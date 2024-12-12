@@ -1,0 +1,50 @@
+project:
+  type: website
+  output-dir: docs
+  preview:
+    port: 3333
+
+website:
+  title: "MUSA 550"
+  page-footer:
+    left: "© 2024 Emily Zhou. All Rights Reserved."
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+
+  sidebar:
+    logo: "assets/copd.jpg"
+    pinned: true
+    align: center
+    tools:
+      - icon: globe
+        href: https://emilyzhou112.github.io/
+        text: "Personal Website"
+      - icon: github
+        href: https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction
+        text: "Project Repository"
+      - icon: envelope
+        href: emzhou@design.upenn.edu
+        text: "Email"
+    style: "docked"
+    search: true
+    collapse-level: 2
+    contents:
+      - href: index.qmd
+        text: Home
+      - href: introduction.qmd
+        text: Introduction
+      - section: Methodology
+        contents:
+          - analysis/RasterData.ipynb
+          - analysis/VectorData.ipynb
+          - analysis/PrepareML.ipynb
+          - analysis/PrevalenceEst.ipynb
+      - section: Results
+
+format:
+  html:
+    highlight-style: solarized
+    theme: cosmo
+    css: styles.css
+    code-copy: true
+    code-overflow: wrap
+    toc: true
