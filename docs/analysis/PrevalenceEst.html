@@ -231,9 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>this is a short notebook purpose is to estimate seasonal prevalence of COPD and to look for existing multicolinearity among our predictor variables because in our current dataset, COPD is calcualted on an annual basis, but we know that seasonal variations an affect local envrionment, which could indeed affect COPD rate. get seasonal data and split the data into four separate dataframes, one for each seasonl, and run machine learning models, because averaging vegetation indices for an entire year would introduce a lot of errors.</p>
-<p>In addition, dimensionality reduction is important becasue a lot of our variables might correlate with each other</p>
-<p>we would only need the following packages</p>
+<p>This short Python notebook aims to estimate the seasonal prevalence of Chronic Obstructive Pulmonary Disease (COPD) and examine multicollinearity among predictor variables. Our current dataset calculates COPD on an annual basis; however, seasonal variations can significantly affect local environmental conditions, which may, in turn, influence COPD rates. To address this, we have acquired vegetation indices from different seasons, but at the same time, we also need an estimate of COPD rate for each season. We will split our dataframe into four separate dataframes—one for each season—and running machine learning models on these subsets. This approach avoids the potential errors introduced by averaging vegetation indices over an entire year. Additionally, dimensionality reduction is essential as many variables in our dataset may be highly correlated, leading to multicollinearity issues. For this analysis, we will only require the <code>geopandas</code> and <code>pandas</code> libraries.</p>
 <div id="fe762d91-70cc-464e-babb-288e12283d86" class="cell" data-tags="[]" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -241,10 +239,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>the approach we are going to take here is to look for exisiting literatures on the prevalence of COPD by season and come up with an estimate.</p>
+<p>The approach we took here to estimate seasonal prevalence of COPD based on annual data is to look for exisiting literatures. In a study by So, Jennifer Y et al (2018), they analyzed data from 1,175 subjects without cardiovascular risk factors, and investigated seasonal and regional variability in COPD exacerbations across 45 study sites in North America. The results showed that winter had the highest COPD exacerbation rate (0.13 exacerbations/person-month), significantly greater than spring, summer, and fall (0.11, 0.079, and 0.10 exacerbations/person-month, respectively; P &lt; 0.001). This is not suprising result, as colder temperatures are known to increase hospitalization and mortality rates in adults with COPD and cardiac conditions, but the exacerbation rate they computed can be a helpful resource for us to compute a seasonal estimate. Their full article is avaialable <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6322011/#sec4">here</a>.</p>
+<p><strong>Rates of exacerbations in each season in each region</strong></p>
+<p><img src="../assets/ex-rate.png" class="img-fluid"> <em>Source: So, Jennifer Y et al (2018)</em></p>
+<p>Based on these information, the function <code>calculate_seasonal_exacerbations</code> first normalizes the input seasonal rates by dividing each rate by the total of all rates, ensuring they sum to 1. This normalization ensures that the rates are proportional and can be directly applied to the data. Next, for each season, the function calculates the number of seasonal exacerbations (season_count) for each row by multiplying the total COPD cases (total_column) by the normalized seasonal rate. It also computes the seasonal exacerbation rate as a percentage of the total population (season_rate).</p>
 <div id="ad36c5de-b01a-4b50-bcd3-75d9c1577cb2" class="cell" data-tags="[]" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_seasonal_exacerbations(df, total_column, seasonal_rates):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -259,6 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The seasonal rates are predefined as 0.39 for winter, 0.33 for spring, 0.237 for summer, and 0.30 for fall, based on observed data. Before calling the function, the total number of COPD-affected individuals is calculated for each row by converting the COPD rate from a percentage to an absolute count using the population column (TotalPopulation). This adjusted dataset is then processed by the function to estimate the seasonal COPD exacerbations for the population in Pennsylvania <code>PA_Final</code>.</p>
 <div id="79cadd4a-e078-4f7d-9a2c-f844baf43288" class="cell" data-tags="[]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>seasonal_rates <span class="op">=</span> {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'winter'</span>: <span class="fl">0.39</span>,  <span class="co"># Winter rate</span></span>
@@ -270,6 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>PA_Final[<span class="st">"COP_People"</span>] <span class="op">=</span> PA_Final[<span class="st">"COP"</span>] <span class="op">/</span> <span class="dv">100</span> <span class="op">*</span> PA_Final[<span class="st">"TotalPopulation"</span>]</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>PA_Final <span class="op">=</span> calculate_seasonal_exacerbations(PA_Final, <span class="st">'COP_People'</span>, seasonal_rates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>After all these, we proceed to create separate dataframe for each season. As an example, <code>PA_Spring</code> contains selected columns relevant to the analysis of COPD exacerbations during the spring season. This includes demographic, behavioral, and environmental variables such as Asthma, Smoking, forest_pct, lst_spring, and others, along with spring-specific exacerbation metrics (spring_count and spring_rate). These variables allow for targeted analysis of seasonal factors influencing COPD in spring. This process is repeated similarly for the other three seasons (winter, summer, and fall), with the corresponding seasonal columns (e.g., winter_count, lst_winter, etc.) included in their respective DataFrames. This separation enables season-specific analysis while maintaining consistency in the variables studied.</p>
 <div id="7c3dfd91-9364-437f-bde8-05deaa9a9fb7" class="cell" data-tags="[]" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
@@ -286,6 +290,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="bic-calculations" class="level2">
 <h2 class="anchored" data-anchor-id="bic-calculations">BIC Calculations</h2>
+<div id="12c1da83-da06-4a66-8a49-2fb636e8e2f0" class="cell" data-tags="[]" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>feature_columns  <span class="op">=</span> [<span class="st">'Smoking'</span>, <span class="st">'Drinking'</span>, <span class="st">'Short_Sleep'</span>, <span class="st">'Physical_Activity'</span>, <span class="st">'neighbor_avg_density'</span>, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'minority'</span>, <span class="st">'aging'</span>, <span class="st">'disability'</span>, <span class="st">'forest_total'</span>, <span class="st">'wetland_total'</span>, <span class="st">'Hdensity_total'</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Ldensity_total'</span>, <span class="st">'grasses_total'</span>, <span class="st">'water_total'</span>, <span class="st">'forest_pct'</span>,  <span class="st">'Hdensity_pct'</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'evi_spring'</span>,<span class="st">'lst_spring'</span>, <span class="st">'ndvi_spring'</span>, <span class="st">'savi_spring'</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>target_column <span class="op">=</span> <span class="st">"spring_rate"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> PA_Spring[feature_columns]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> PA_Spring[target_column]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8952de39-1933-4af7-ab3c-1e0fd9c2c83d" class="cell" data-tags="[]" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_bic(y_true, y_pred, n, p):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate Bayesian Information Criterion (BIC)."""</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    mse <span class="op">=</span> mean_squared_error(y_true, y_pred)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> np.log(mse) <span class="op">+</span> p <span class="op">*</span> np.log(n)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Fit the full model</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>full_model <span class="op">=</span> LinearRegression().fit(X, y)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>y_pred_full <span class="op">=</span> full_model.predict(X)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>p_predictors <span class="op">=</span> X.shape[<span class="dv">1</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>bic_full <span class="op">=</span> calculate_bic(y, y_pred_full, n_samples, p_predictors)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Perform backward elimination</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>selected_predictors <span class="op">=</span> <span class="bu">list</span>(X.columns)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>selected_bic <span class="op">=</span> bic_full</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    best_bic <span class="op">=</span> selected_bic</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    best_predictors <span class="op">=</span> selected_predictors</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> predictor <span class="kw">in</span> selected_predictors:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        predictors_subset <span class="op">=</span> selected_predictors.copy()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        predictors_subset.remove(predictor)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        X_subset <span class="op">=</span> X[predictors_subset]</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> LinearRegression().fit(X_subset, y)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        y_pred_subset <span class="op">=</span> model.predict(X_subset)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        bic <span class="op">=</span> calculate_bic(y, y_pred_subset, n_samples, <span class="bu">len</span>(predictors_subset))</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> bic <span class="op">&lt;</span> best_bic:</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            best_bic <span class="op">=</span> bic</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            best_predictors <span class="op">=</span> predictors_subset</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> best_bic <span class="op">&lt;</span> selected_bic:</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        selected_bic <span class="op">=</span> best_bic</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        selected_predictors <span class="op">=</span> best_predictors</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the selected predictors and their BIC</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Selected predictors:"</span>, selected_predictors)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"BIC:"</span>, selected_bic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[11], line 7</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> n <span style="color:rgb(98,98,98)">*</span> np<span style="color:rgb(98,98,98)">.</span>log(mse) <span style="color:rgb(98,98,98)">+</span> p <span style="color:rgb(98,98,98)">*</span> np<span style="color:rgb(98,98,98)">.</span>log(n)
+<span class="ansi-green-fg ansi-bold">      6</span> <span style="font-style:italic;color:rgb(95,135,135)"># Step 1: Fit the full model</span>
+<span class="ansi-green-fg">----&gt; 7</span> full_model <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">LinearRegression</span>()<span style="color:rgb(98,98,98)">.</span>fit(X, y)
+<span class="ansi-green-fg ansi-bold">      8</span> y_pred_full <span style="color:rgb(98,98,98)">=</span> full_model<span style="color:rgb(98,98,98)">.</span>predict(X)
+<span class="ansi-green-fg ansi-bold">      9</span> n_samples <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">len</span>(y)
+
+<span class="ansi-red-fg">NameError</span>: name 'LinearRegression' is not defined</pre>
+</div>
+</div>
+</div>
 
 
 </section>
