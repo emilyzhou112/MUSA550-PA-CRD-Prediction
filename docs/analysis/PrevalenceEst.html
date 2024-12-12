@@ -231,8 +231,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>short notebook purpose is to estimate seasonal prevalence because the current rate is total get seasonal data and split the data into four separate dataframes, one for each seasonl, and run machine learning models, because averaging vegetation indices for an entire year would introduce a lot of errors.</p>
-<p>dimensionality reduction. we would only need the following packages</p>
+<p>this is a short notebook purpose is to estimate seasonal prevalence of COPD and to look for existing multicolinearity among our predictor variables because in our current dataset, COPD is calcualted on an annual basis, but we know that seasonal variations an affect local envrionment, which could indeed affect COPD rate. get seasonal data and split the data into four separate dataframes, one for each seasonl, and run machine learning models, because averaging vegetation indices for an entire year would introduce a lot of errors.</p>
+<p>In addition, dimensionality reduction is important becasue a lot of our variables might correlate with each other</p>
+<p>we would only need the following packages</p>
 <div id="fe762d91-70cc-464e-babb-288e12283d86" class="cell" data-tags="[]" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -269,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>PA_Final[<span class="st">"COP_People"</span>] <span class="op">=</span> PA_Final[<span class="st">"COP"</span>] <span class="op">/</span> <span class="dv">100</span> <span class="op">*</span> PA_Final[<span class="st">"TotalPopulation"</span>]</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>PA_Final <span class="op">=</span> calculate_seasonal_exacerbations(PA_Final, <span class="st">'COP_People'</span>, seasonal_rates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7c3dfd91-9364-437f-bde8-05deaa9a9fb7" class="cell">
+<div id="7c3dfd91-9364-437f-bde8-05deaa9a9fb7" class="cell" data-tags="[]" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spring dataframe</span></span>
@@ -279,10 +280,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'Ldensity_total'</span>, <span class="st">'grasses_total'</span>, <span class="st">'water_total'</span>, <span class="st">'forest_pct'</span>,  <span class="st">'Hdensity_pct'</span>, </span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'evi_spring'</span>,<span class="st">'lst_spring'</span>, <span class="st">'ndvi_spring'</span>, <span class="st">'savi_spring'</span>, <span class="st">'spring_count'</span>, <span class="st">"spring_rate"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<div id="b361e6c9-581c-4a53-ab81-ce8d2caa81d4" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># export dataframe if needed</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>PA_Spring.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="checking-for-predictors-and-outcome-variables" class="level2">
 <h2 class="anchored" data-anchor-id="checking-for-predictors-and-outcome-variables">Checking for predictors and outcome variables</h2>
