@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Seasonal Prevalence Estimation and Dimensionality Reudction – MUSA 550</title>
+<title>Seasonal Prevalence Estimation and Dimensionality Reduction – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,6 +100,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -113,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/RasterData.html">Methodology</a></li><li class="breadcrumb-item"><a href="../analysis/PrevalenceEst.html">Seasonal Prevalence Estimation and Dimensionality Reudction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/RasterData.html">Methodology</a></li><li class="breadcrumb-item"><a href="../analysis/PrevalenceEst.html">Seasonal Prevalence Estimation and Dimensionality Reduction</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -185,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../analysis/PrevalenceEst.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Seasonal Prevalence Estimation and Dimensionality Reudction</span></a>
+ <span class="menu-text">Seasonal Prevalence Estimation and Dimensionality Reduction</span></a>
   </div>
 </li>
       </ul>
@@ -204,17 +233,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#checking-for-predictors-and-outcome-variables" id="toc-checking-for-predictors-and-outcome-variables" class="nav-link active" data-scroll-target="#checking-for-predictors-and-outcome-variables">Checking for predictors and outcome variables</a></li>
-  <li><a href="#bic-calculations" id="toc-bic-calculations" class="nav-link" data-scroll-target="#bic-calculations">BIC Calculations</a></li>
+  <li><a href="#seasonal-prevalence" id="toc-seasonal-prevalence" class="nav-link active" data-scroll-target="#seasonal-prevalence">Seasonal Prevalence</a></li>
+  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction">Dimensionality Reduction</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/RasterData.html">Methodology</a></li><li class="breadcrumb-item"><a href="../analysis/PrevalenceEst.html">Seasonal Prevalence Estimation and Dimensionality Reudction</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/RasterData.html">Methodology</a></li><li class="breadcrumb-item"><a href="../analysis/PrevalenceEst.html">Seasonal Prevalence Estimation and Dimensionality Reduction</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Seasonal Prevalence Estimation and Dimensionality Reudction</h1>
+<h1 class="title">Seasonal Prevalence Estimation and Dimensionality Reduction</h1>
 </div>
 
 
@@ -231,8 +260,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This short Python notebook aims to estimate the seasonal prevalence of Chronic Obstructive Pulmonary Disease (COPD) and examine multicollinearity among predictor variables. Our current dataset calculates COPD on an annual basis; however, seasonal variations can significantly affect local environmental conditions, which may, in turn, influence COPD rates. To address this, we have acquired vegetation indices from different seasons, but at the same time, we also need an estimate of COPD rate for each season. We will split our dataframe into four separate dataframes—one for each season—and running machine learning models on these subsets. This approach avoids the potential errors introduced by averaging vegetation indices over an entire year. Additionally, dimensionality reduction is essential as many variables in our dataset may be highly correlated, leading to multicollinearity issues. For this analysis, we will only require the <code>geopandas</code> and <code>pandas</code> libraries.</p>
-<div id="fe762d91-70cc-464e-babb-288e12283d86" class="cell" data-tags="[]" data-execution_count="1">
+<p>This short Python notebook aims to estimate the seasonal prevalence of Chronic Obstructive Pulmonary Disease (COPD) and examine multicollinearity among predictor variables. Our current dataset calculates COPD on an annual basis; however, seasonal variations can significantly affect local environmental conditions, which may, in turn, influence COPD rates. To address this, we have acquired vegetation indices from different seasons, but at the same time, we also need an estimate of COPD rate for each season. We will split our dataframe into four separate dataframes—one for each season—and running machine learning models on these subsets. This approach avoids the potential errors introduced by averaging vegetation indices over an entire year. Additionally, dimensionality reduction is essential as many variables in our dataset may be highly correlated, leading to multicollinearity issues. For this analysis, we will only require the <code>geopandas</code>, <code>pandas</code>, and <code>sklearn</code> libraries.</p>
+<div id="fe762d91-70cc-464e-babb-288e12283d86" class="cell" data-tags="[]" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -240,9 +269,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score,  mean_absolute_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<section id="seasonal-prevalence" class="level2">
+<h2 class="anchored" data-anchor-id="seasonal-prevalence">Seasonal Prevalence</h2>
 <p>The approach we took here to estimate seasonal prevalence of COPD based on annual data is to look for exisiting literatures. In a study by So, Jennifer Y et al (2018), they analyzed data from 1,175 subjects without cardiovascular risk factors, and investigated seasonal and regional variability in COPD exacerbations across 45 study sites in North America. The results showed that winter had the highest COPD exacerbation rate (0.13 exacerbations/person-month), significantly greater than spring, summer, and fall (0.11, 0.079, and 0.10 exacerbations/person-month, respectively; P &lt; 0.001). This is not suprising result, as colder temperatures are known to increase hospitalization and mortality rates in adults with COPD and cardiac conditions, but the exacerbation rate they computed can be a helpful resource for us to compute a seasonal estimate. Their full article is avaialable <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6322011/#sec4">here</a>.</p>
 <p><strong>Rates of exacerbations in each season in each region</strong></p>
 <p><img src="../assets/ex-rate.png" class="img-fluid"> <em>Source: So, Jennifer Y et al (2018)</em></p>
@@ -285,12 +317,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'evi_spring'</span>,<span class="st">'lst_spring'</span>, <span class="st">'ndvi_spring'</span>, <span class="st">'savi_spring'</span>, <span class="st">'spring_count'</span>, <span class="st">"spring_rate"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="checking-for-predictors-and-outcome-variables" class="level2">
-<h2 class="anchored" data-anchor-id="checking-for-predictors-and-outcome-variables">Checking for predictors and outcome variables</h2>
 </section>
-<section id="bic-calculations" class="level2">
-<h2 class="anchored" data-anchor-id="bic-calculations">BIC Calculations</h2>
-<div id="12c1da83-da06-4a66-8a49-2fb636e8e2f0" class="cell" data-tags="[]" data-execution_count="10">
+<section id="dimensionality-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality Reduction</h2>
+<p>Dimensionality reduction is an important step before runing any machine learning models because many of the predictor variables are likely to be correlated with each other, which can lead to multicollinearity. Multicollinearity occurs when two or more predictors in a model are highly correlated, making it difficult to determine the individual effect of each predictor on the target variable. This can result in unstable coefficient estimates, increased variance, and reduced model interpretability.</p>
+<p>For instance, environmental factors such as <code>forest_total</code>, <code>wetland_total</code>, and <code>grasses_total</code> may exhibit correlations, while demographic variables like <code>minority</code>, <code>aging</code>, and <code>disability</code> could also be related. Multicollinearity makes it difficult to isolate the effect of each individual predictor on the target variable, potentially destabilizing model estimates. Additionally, some variables like <code>Hdensity_total</code> and <code>Ldensity_total</code>, or the vegetation indices <code>evi_spring</code>, <code>ndvi_spring</code>, <code>savi_spring</code>, may be redundant and provide overlapping information, which increases the model’s complexity without adding predictive value. This redundancy and high correlation among predictors increase the risk of overfitting, where the model captures noise rather than true patterns in the data.</p>
+<p>Indeed, upon checking the correlation matrix for all of our variables, we found that there’s strong correlation between between vegetation indicies, different land cover features, and different health risks behaviors. Including all of them in our model will lead to overfitting.</p>
+<div id="8c28d4fa-2cf3-43da-96e5-fab738bc4b74" class="cell" data-tags="[]" data-execution_count="29">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="PrevalenceEst_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="12c1da83-da06-4a66-8a49-2fb636e8e2f0" class="cell" data-tags="[]" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>feature_columns  <span class="op">=</span> [<span class="st">'Smoking'</span>, <span class="st">'Drinking'</span>, <span class="st">'Short_Sleep'</span>, <span class="st">'Physical_Activity'</span>, <span class="st">'neighbor_avg_density'</span>, </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'minority'</span>, <span class="st">'aging'</span>, <span class="st">'disability'</span>, <span class="st">'forest_total'</span>, <span class="st">'wetland_total'</span>, <span class="st">'Hdensity_total'</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Ldensity_total'</span>, <span class="st">'grasses_total'</span>, <span class="st">'water_total'</span>, <span class="st">'forest_pct'</span>,  <span class="st">'Hdensity_pct'</span>, </span>
@@ -300,7 +342,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> PA_Spring[feature_columns]</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> PA_Spring[target_column]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8952de39-1933-4af7-ab3c-1e0fd9c2c83d" class="cell" data-tags="[]" data-execution_count="11">
+<p>Now, we will apply linear regression using the scikit-learn library to perform dimensionality reduction by calculating the Bayesian Information Criterion (BIC), using the spring dataset as an example. The BIC will help identify the most relevant predictor variables, mitigating the impact of multicollinearity and enhancing the interpretability of our machine learning models.</p>
+<p>The <strong>Bayesian Information Criterion (BIC)</strong> is a model selection criterion that balances the goodness of fit with the complexity of the model. It is particularly useful for dimensionality reduction, as it helps penalize the inclusion of irrelevant predictor variables. The formula for BIC is:</p>
+<p><span class="math display">\[
+\text{BIC} = n \cdot \log(\text{MSE}) + p \cdot \log(n)
+\]</span></p>
+<p>Where n is the number of samples, MSE is the mean squared error (a measure of model fit), and p is the number of predictors in the model.</p>
+<p>The BIC penalizes models with more parameters to avoid overfitting, encouraging the selection of simpler models that still provide a good fit. The following code uses BIC to perform dimensionality reduction and eliminate irrelevant predictors from the model. The first step in the code is to fit the <strong>full model</strong> using all available predictors (<code>X</code>). The model is trained using <code>LinearRegression()</code> from <code>scikit-learn</code>, and the predictions (<code>y_pred_full</code>) are generated. The BIC for this full model is then calculated.</p>
+<p>Next, the code performs backward elimination to reduce the number of predictors. It starts with all predictors in the model and iteratively removes the least significant predictors based on BIC. - For each iteration, the BIC for models excluding one predictor at a time is calculated. - If removing a predictor results in a lower BIC (indicating a better model with fewer predictors), the predictor is excluded from the model. - This process continues until no further improvement in BIC is achieved by removing predictors.</p>
+<div id="8952de39-1933-4af7-ab3c-1e0fd9c2c83d" class="cell" data-tags="[]" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_bic(y_true, y_pred, n, p):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate Bayesian Information Criterion (BIC)."""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    mse <span class="op">=</span> mean_squared_error(y_true, y_pred)</span>
@@ -341,21 +391,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the selected predictors and their BIC</span></span>
 <span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Selected predictors:"</span>, selected_predictors)</span>
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"BIC:"</span>, selected_bic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[11], line 7</span>
-<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> n <span style="color:rgb(98,98,98)">*</span> np<span style="color:rgb(98,98,98)">.</span>log(mse) <span style="color:rgb(98,98,98)">+</span> p <span style="color:rgb(98,98,98)">*</span> np<span style="color:rgb(98,98,98)">.</span>log(n)
-<span class="ansi-green-fg ansi-bold">      6</span> <span style="font-style:italic;color:rgb(95,135,135)"># Step 1: Fit the full model</span>
-<span class="ansi-green-fg">----&gt; 7</span> full_model <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">LinearRegression</span>()<span style="color:rgb(98,98,98)">.</span>fit(X, y)
-<span class="ansi-green-fg ansi-bold">      8</span> y_pred_full <span style="color:rgb(98,98,98)">=</span> full_model<span style="color:rgb(98,98,98)">.</span>predict(X)
-<span class="ansi-green-fg ansi-bold">      9</span> n_samples <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">len</span>(y)
-
-<span class="ansi-red-fg">NameError</span>: name 'LinearRegression' is not defined</pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>Selected predictors: ['Smoking', 'Drinking', 'Short_Sleep', 'Physical_Activity', 'minority', 'aging', 'disability', 'forest_total', 'Ldensity_total', 'grasses_total', 'forest_pct', 'lst_spring']
+BIC: -12292.878498899865</code></pre>
 </div>
 </div>
-</div>
+<p>The backward elimination procedure identified the following <strong>selected predictors</strong> as those contributing most significantly to the model’s fit while minimizing the BIC:</p>
+<ul>
+<li><strong>Smoking</strong>: The smoking rate in the population.</li>
+<li><strong>Drinking</strong>: The alcohol consumption rate in the population.</li>
+<li><strong>Short_Sleep</strong>: The proportion of the population reporting insufficient sleep.</li>
+<li><strong>Physical_Activity</strong>: The level of physical activity in the population.</li>
+<li><strong>minority</strong>: The proportion of the population belonging to minority groups.</li>
+<li><strong>aging</strong>: The aging population within the dataset.</li>
+<li><strong>disability</strong>: The proportion of the population with disabilities.</li>
+<li><strong>forest_total</strong>: Total forested area in the region.</li>
+<li><strong>Ldensity_total</strong>: Total land density (likely referring to residential or urban areas).</li>
+<li><strong>grasses_total</strong>: Total grassland area in the region.</li>
+<li><strong>forest_pct</strong>: The percentage of the region covered by forests.</li>
+<li><strong>lst_spring</strong>: Land Surface Temperature (LST) for the spring season.</li>
+</ul>
+<p>These predictors have been retained because their inclusion resulted in the <strong>lowest Bayesian Information Criterion (BIC)</strong> value. The BIC for this model is <strong>-12292.88</strong>, indicating the best balance between goodness of fit and model complexity among the models tested.</p>
+<p>This model is optimal in terms of fitting the data without overfitting, as indicated by the negative BIC value, which is lower compared to other possible models with more predictors.</p>
 
 
 </section>
