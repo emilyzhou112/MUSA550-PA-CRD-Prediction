@@ -63,6 +63,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../analysis/VectorData.html" rel="next">
+<link href="../introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-b5e3097ca6bab6260ed4ce2e73d47aae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c44d35fed6381046f2649f7297f82eb1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-504978bd06f0055f4cb0f83b2338c924.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -131,9 +133,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <img src="../assets/copd.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
-    <a href="https://emilyzhou112.github.io/" title="Personal Website" class="quarto-navigation-tool px-1" aria-label="Personal Website"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction" title="Project Repository" class="quarto-navigation-tool px-1" aria-label="Project Repository"><i class="bi bi-github"></i></a>
-    <a href="../emzhou@design.upenn.edu" title="Email" class="quarto-navigation-tool px-1" aria-label="Email"><i class="bi bi-envelope"></i></a>
+    <a href="https://emilyzhou112.github.io/" title="Visit my Website" class="quarto-navigation-tool px-1" aria-label="Visit my Website"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction" title="View on GitHub" class="quarto-navigation-tool px-1" aria-label="View on GitHub"><i class="bi bi-github"></i></a>
+    <a href="../emzhou@design.upenn.edu" title="Contact Me" class="quarto-navigation-tool px-1" aria-label="Contact Me"><i class="bi bi-envelope"></i></a>
 </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -191,8 +193,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Results</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/VarCompare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Predictors Comparison Across Seasons</span></a>
+  </div>
+</li>
+      </ul>
   </li>
     </ul>
     </div>
@@ -208,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#loading-landsat-data" id="toc-loading-landsat-data" class="nav-link" data-scroll-target="#loading-landsat-data">Loading Landsat Data</a></li>
   <li><a href="#loading-land-cover-data" id="toc-loading-land-cover-data" class="nav-link" data-scroll-target="#loading-land-cover-data">Loading Land Cover Data</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/analysis/RasterData.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
@@ -565,7 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -983,6 +998,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../introduction.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../analysis/VectorData.html" class="pagination-link" aria-label="Vector Data and US Census Bureau API">
+        <span class="nav-page-text">Vector Data and US Census Bureau API</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -991,7 +1018,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/analysis/RasterData.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

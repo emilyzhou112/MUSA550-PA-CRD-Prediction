@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Predictors Comparison Across Seasons – MUSA 550</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../analysis/PrevalenceEst.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b5e3097ca6bab6260ed4ce2e73d47aae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-504978bd06f0055f4cb0f83b2338c924.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/VarCompare.html">Results</a></li><li class="breadcrumb-item"><a href="../analysis/VarCompare.html">Predictors Comparison Across Seasons</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/copd.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://emilyzhou112.github.io/" title="Visit my Website" class="quarto-navigation-tool px-1" aria-label="Visit my Website"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction" title="View on GitHub" class="quarto-navigation-tool px-1" aria-label="View on GitHub"><i class="bi bi-github"></i></a>
+    <a href="../emzhou@design.upenn.edu" title="Contact Me" class="quarto-navigation-tool px-1" aria-label="Contact Me"><i class="bi bi-envelope"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Methodology</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/RasterData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Raster Data and Google Earth Engine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/VectorData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector Data and US Census Bureau API</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/PrepareML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning Data Preparation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/PrevalenceEst.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seasonal Prevalence Estimation and Dimensionality Reduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/VarCompare.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Predictors Comparison Across Seasons</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-random-forest-model" id="toc-the-random-forest-model" class="nav-link active" data-scroll-target="#the-random-forest-model">The Random Forest Model</a></li>
+  <li><a href="#fitting-the-model" id="toc-fitting-the-model" class="nav-link" data-scroll-target="#fitting-the-model">Fitting the Model</a></li>
+  <li><a href="#goodness-of-fit-measure" id="toc-goodness-of-fit-measure" class="nav-link" data-scroll-target="#goodness-of-fit-measure">Goodness of Fit Measure</a>
+  <ul class="collapse">
+  <li><a href="#comparing-the-r2-across-16-model" id="toc-comparing-the-r2-across-16-model" class="nav-link" data-scroll-target="#comparing-the-r2-across-16-model">Comparing the R2 Across 16 Model</a></li>
+  <li><a href="#comparing-the-rmse-across-16-models" id="toc-comparing-the-rmse-across-16-models" class="nav-link" data-scroll-target="#comparing-the-rmse-across-16-models">Comparing the RMSE Across 16 Models</a></li>
+  <li><a href="#compare-predictors-with-highest-contribution" id="toc-compare-predictors-with-highest-contribution" class="nav-link" data-scroll-target="#compare-predictors-with-highest-contribution">Compare Predictors with Highest Contribution</a></li>
+  </ul></li>
+  <li><a href="#understanding-prediction-error" id="toc-understanding-prediction-error" class="nav-link" data-scroll-target="#understanding-prediction-error">Understanding Prediction Error</a>
+  <ul class="collapse">
+  <li><a href="#predicted-vs.-actual" id="toc-predicted-vs.-actual" class="nav-link" data-scroll-target="#predicted-vs.-actual">Predicted VS. Actual</a></li>
+  <li><a href="#spatial-distribution-of-errors" id="toc-spatial-distribution-of-errors" class="nav-link" data-scroll-target="#spatial-distribution-of-errors">Spatial Distribution of Errors</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/analysis/VarCompare.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/VarCompare.html">Results</a></li><li class="breadcrumb-item"><a href="../analysis/VarCompare.html">Predictors Comparison Across Seasons</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Predictors Comparison Across Seasons</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this notebook, we will evaluate the power of each of our predictors in predicting COPD and assess their effectiveness for different seasons. Specifically, we will run Random Forest Regressions on all of our predictors, predictors after dimensionality reduction, using only sociobehavioral variables, and using only environmental variables. While there are some multicollinearities in the dataset, we proceed with this approach as Random Forests handle multicollinearity by averaging over multiple trees, reducing the risk of overfitting and still providing valuable insights into feature importance.</p>
+<p>We will mainly draw on the following packages from sklearn in this section:</p>
+<ul>
+<li><p><strong>metrics</strong>, which includes <code>make_scorer</code>, <code>mean_squared_error</code>, <code>r2_score</code>, <code>mean_absolute_error</code>: Provides functions to evaluate the performance of the regression models, calculating error metrics and scoring metrics like R².</p></li>
+<li><p><strong>model_selection</strong>, mainly <code>train_test_split</code>: Used to split the dataset into training and testing sets, ensuring the model is validated on unseen data.</p></li>
+<li><p><strong>ensemble</strong>, mainly <code>RandomForestRegressor</code>: The core model used for regression, which builds multiple decision trees and combines their predictions to enhance accuracy.</p></li>
+<li><p><strong>model_selection</strong>, mainly <code>cross_validate</code>: Allows cross-validation to assess the performance of the model across different subsets of the data, helping to ensure the model generalizes well.</p></li>
+</ul>
+<div id="c0c879f0-1fe4-4882-ace8-b315481d0ab8" class="cell" data-tags="[]" data-execution_count="114">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVR</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> make_scorer, mean_squared_error, r2_score, mean_absolute_error</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_validate, cross_val_predict</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="the-random-forest-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-random-forest-model">The Random Forest Model</h2>
+<p>A Random Forest model is a versatile machine learning algorithm commonly used for regression analysis. It operates by constructing a multitude of decision trees during training and outputs the average of their predictions to provide robust and accurate results. Each tree in the forest is trained on a random subset of the data, with features also randomly sampled at each split, which helps reduce overfitting and ensures diversity among the trees. This ensemble approach improves model stability and accuracy by leveraging the collective predictions of multiple trees. Random Forest is particularly effective when dealing with datasets that have complex relationships, non-linear patterns, or a mix of categorical and continuous variables. It also provides insights into feature importance, allowing researchers to understand the relative contribution of each predictor in the model. Despite its strengths, Random Forest models can be computationally intensive and may require careful tuning of hyperparameters like the number of trees and maximum tree depth for optimal performance.</p>
+<p><strong>Random Forest Regressor</strong></p>
+<p><img src="../assets/rf.jpg" class="img-fluid"></p>
+<p>Since we will be running the machine learning model multiple times for each seaon’s data, we defined some helper functions to streamline the process. The <code>split_and_scale_data</code> function prepares the data for Random Forest Regression by first splitting it into training and testing sets using <code>train_test_split</code> with stratification to maintain the target variable distribution. It then scales the features using StandardScaler to standardize the data, ensuring that all features contribute equally to the model. This step is crucial for consistent model performance, especially when features have varying scales (like ours).</p>
+<div id="d387bcb2-f66a-4e21-820c-8878de8d429b" class="cell" data-tags="[]" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_and_scale_data(X, y, stratify_col, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split the data</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        X, y, test_size<span class="op">=</span>test_size, random_state<span class="op">=</span>random_state, stratify<span class="op">=</span>stratify_col</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scale the data</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    X_train_scaled <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    X_test_scaled <span class="op">=</span> scaler.transform(X_test)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X_train_scaled, X_test_scaled, y_train, y_test, scaler</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The <code>train_and_evaluate_rf</code> function trains a Random Forest model using the RandomForestRegressor with a specified number of estimators. It fits the model to the training data and then makes predictions on the test set. The function calculates key performance metrics, including <strong>Mean Squared Error (MSE), Root Mean Squared Error (RMSE), R-squared (R²), and Mean Absolute Error (MAE)</strong>, to evaluate model accuracy. Additionally, it computes feature importances to identify which variables contribute most to the model’s predictions, returning the predictions, evaluation metrics, and a sorted dataframe of feature importances.</p>
+<div id="df7bcc5e-911d-48c9-9c61-9a317390dc33" class="cell" data-tags="[]" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_and_evaluate_rf(X_train, X_test, y_train, y_test, feature_names, n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">42</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Train the Random Forest model</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    rf_model <span class="op">=</span> RandomForestRegressor(n_estimators<span class="op">=</span>n_estimators, random_state<span class="op">=</span>random_state)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    rf_model.fit(X_train, y_train)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make predictions</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    predictions_rf <span class="op">=</span> rf_model.predict(X_test)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate metrics</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    mse_rf <span class="op">=</span> mean_squared_error(y_test, predictions_rf)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    rmse_rf <span class="op">=</span> np.sqrt(mse_rf)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    r2_rf <span class="op">=</span> r2_score(y_test, predictions_rf)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    mae_rf <span class="op">=</span> mean_absolute_error(y_test, predictions_rf)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute feature importances</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    feature_importances <span class="op">=</span> rf_model.feature_importances_</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    importance_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Feature'</span>: feature_names,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Importance'</span>: feature_importances</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    }).sort_values(by<span class="op">=</span><span class="st">'Importance'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'predictions'</span>: predictions_rf,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">'rmse'</span>: rmse_rf,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">'r2'</span>: r2_rf,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">'importance_df'</span>: importance_df</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The <code>extract_results</code> function extracts key results from the output of a model evaluation. It retrieves the RMSE (Root Mean Squared Error) and R² (R-squared) metrics from the results, which provide insights into the model’s accuracy. The function also extracts the top 5 most important features based on their feature importances, which help in understanding which variables have the greatest influence on the model’s predictions. It returns both the performance metrics and the list of top features.</p>
+<div id="00011f01-16b5-46d2-b3ab-0038f45647a4" class="cell" data-tags="[]" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_results(results, method_name):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract metrics</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> [results[<span class="st">'rmse'</span>], results[<span class="st">'r2'</span>]]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract top 5 features</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    top_features <span class="op">=</span> results[<span class="st">'importance_df'</span>][<span class="st">'Feature'</span>].head(<span class="dv">5</span>).tolist()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> metrics, top_features</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="fitting-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-the-model">Fitting the Model</h2>
+<p>The above functions will be applied separately using four different sets of predictors: all variables, only environmental variables, only sociobehavioral variables, and variables after dimensionality reduction. This approach allows us to assess the predictive power of each group of variables and determine their effectiveness in predicting COPD for each season. For each season, four models will be trained and evaluated.</p>
+<div id="6b54fa3a-8780-417b-b0c6-2a26a449bca8" class="cell" data-tags="[]" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using all variables </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>stratify_col <span class="op">=</span> PA_Spring[<span class="st">'CountyName'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>X_Spring_All <span class="op">=</span> PA_Spring[[<span class="st">'Smoking'</span>, <span class="st">'Drinking'</span>, <span class="st">'Short_Sleep'</span>, <span class="st">'Physical_Activity'</span>, <span class="st">'neighbor_avg_density'</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'minority'</span>, <span class="st">'aging'</span>, <span class="st">'disability'</span>, <span class="st">'forest_total'</span>, <span class="st">'wetland_total'</span>, <span class="st">'Hdensity_total'</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Ldensity_total'</span>, <span class="st">'grasses_total'</span>, <span class="st">'water_total'</span>, <span class="st">'forest_pct'</span>,  <span class="st">'Hdensity_pct'</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'evi_spring'</span>,<span class="st">'lst_spring'</span>, <span class="st">'ndvi_spring'</span>, <span class="st">'savi_spring'</span>]]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>y_Spring <span class="op">=</span> PA_Spring[[<span class="st">'spring_count'</span>]]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>X_train_scaled, X_test_scaled, y_train, y_test_sp, scaler <span class="op">=</span> split_and_scale_data(X_Spring_All, y_Spring, stratify_col)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>spring_result <span class="op">=</span> train_and_evaluate_rf(X_train_scaled, X_test_scaled, y_train, y_test_sp, X_Spring_All.columns)                   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="7f9c03ac-b804-4b60-ba9f-0412b1aaa45b" class="cell" data-tags="[]" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using all variables after dimensionality reduction</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X_Spring_BIC <span class="op">=</span> PA_Spring[[<span class="st">'Smoking'</span>, <span class="st">'Drinking'</span>, <span class="st">'Short_Sleep'</span>, <span class="st">'Physical_Activity'</span>, <span class="st">'minority'</span>, <span class="st">'aging'</span>, <span class="st">'disability'</span>, <span class="st">'forest_total'</span>, <span class="st">'Ldensity_total'</span>, <span class="st">'grasses_total'</span>, <span class="st">'forest_pct'</span>, <span class="st">'lst_spring'</span>]]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X_train_scaled, X_test_scaled, y_train, y_test_sp, scaler <span class="op">=</span> split_and_scale_data(X_Spring_BIC, y_Spring, stratify_col)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>spring_result_BIC <span class="op">=</span> train_and_evaluate_rf(X_train_scaled, X_test_scaled, y_train, y_test_sp, X_Spring_BIC.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="de666c08-426c-45ff-88be-c60f8adda494" class="cell" data-tags="[]" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using all environmental predictors</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_Spring_Env <span class="op">=</span> PA_Spring[[<span class="st">'forest_total'</span>, <span class="st">'wetland_total'</span>, <span class="st">'Hdensity_total'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Ldensity_total'</span>, <span class="st">'grasses_total'</span>, <span class="st">'water_total'</span>, <span class="st">'forest_pct'</span>,  <span class="st">'Hdensity_pct'</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'evi_spring'</span>,<span class="st">'lst_spring'</span>, <span class="st">'ndvi_spring'</span>, <span class="st">'savi_spring'</span>]]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X_train_scaled, X_test_scaled, y_train, y_test_sp, scaler <span class="op">=</span> split_and_scale_data(X_Spring_Env, y_Spring, stratify_col)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>spring_result_env <span class="op">=</span> train_and_evaluate_rf(X_train_scaled, X_test_scaled, y_train, y_test_sp, X_Spring_Env.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="187589e1-3673-43d4-a140-5b5624223979" class="cell" data-tags="[]" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using all socio-behavioral predictors</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X_Spring_Sol <span class="op">=</span> PA_Spring[[<span class="st">'Smoking'</span>, <span class="st">'Drinking'</span>, <span class="st">'Short_Sleep'</span>, <span class="st">'Physical_Activity'</span>, <span class="st">'neighbor_avg_density'</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'minority'</span>, <span class="st">'aging'</span>, <span class="st">'disability'</span>]]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>X_train_scaled, X_test_scaled, y_train, y_test_sp, scaler <span class="op">=</span> split_and_scale_data(X_Spring_Sol, y_Spring, stratify_col)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>spring_result_sol <span class="op">=</span> train_and_evaluate_rf(X_train_scaled, X_test_scaled, y_train, y_test_sp, X_Spring_Sol.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="goodness-of-fit-measure" class="level2">
+<h2 class="anchored" data-anchor-id="goodness-of-fit-measure">Goodness of Fit Measure</h2>
+<p>After running the model 16 times (4 models for each of the 4 predictor sets across the seasons), we obtain 16 result outputs. From each model, we extract the R² and RMSE metrics as well as the top five predictors contributing the most to the predictions. The RMSE (Root Mean Squared Error) represents the average magnitude of prediction error, where lower values indicate better model performance. The R² (coefficient of determination) reflects the proportion of variance in the target variable that is explained by the predictors, with values closer to 1 indicating a better fit.</p>
+<p>Again, the purpose of this analysis is to evaluate the predictive strength of different sets of variables and identify the most impactful predictors for COPD across seasons. All results are compiled into a unified table for easier interpretation, and the output is displayed below.</p>
+<div id="a6b34ebd-354a-4103-b52c-5f2fac033cbc" class="cell" data-tags="[]" data-execution_count="87">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>methods <span class="op">=</span> [<span class="st">'sp_all'</span>, <span class="st">'sp_bic'</span>, <span class="st">'sp_env'</span>, <span class="st">'sp_sol'</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'su_all'</span>, <span class="st">'su_bic'</span>, <span class="st">'su_env'</span>, <span class="st">'su_sol'</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'fa_all'</span>, <span class="st">'fa_bic'</span>, <span class="st">'fa_env'</span>, <span class="st">'fa_sol'</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">'wi_all'</span>, <span class="st">'wi_bic'</span>, <span class="st">'wi_env'</span>, <span class="st">'wi_sol'</span>]  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> [spring_result, spring_result_BIC, spring_result_env, spring_result_sol, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>           summer_result, summer_result_BIC, summer_result_env, summer_result_sol,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>           fall_result, fall_result_BIC, fall_result_env, fall_result_sol,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>           winter_result, winter_result_BIC, winter_result_env, winter_result_sol</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>           ]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>metrics_data <span class="op">=</span> {}</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>top_features_data <span class="op">=</span> {}</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> method, result <span class="kw">in</span> <span class="bu">zip</span>(methods, results):</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    metrics, top_features <span class="op">=</span> extract_results(result, method)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    metrics_data[method] <span class="op">=</span> metrics</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    top_features_data[method] <span class="op">=</span> top_features</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>compare_metrics <span class="op">=</span> pd.DataFrame(metrics_data, index<span class="op">=</span>[<span class="st">'RMSE'</span>, <span class="st">'R2'</span>])</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>compare_top_features <span class="op">=</span> pd.DataFrame(top_features_data, index<span class="op">=</span>[<span class="ss">f'Feature </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="comparing-the-r2-across-16-model" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-the-r2-across-16-model">Comparing the R2 Across 16 Model</h3>
+<p><strong>Table Showing R2 Score By Model and Season</strong></p>
+<div id="395f0602-1364-41a9-9753-f65f5e5345b2" class="cell" data-tags="[]" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="61">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Model</th>
+<th data-quarto-table-cell-role="th">all</th>
+<th data-quarto-table-cell-role="th">bic</th>
+<th data-quarto-table-cell-role="th">env</th>
+<th data-quarto-table-cell-role="th">sol</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Season</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Fall</td>
+<td>0.561480</td>
+<td>0.504986</td>
+<td>0.385853</td>
+<td>0.269291</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Spring</td>
+<td>0.561549</td>
+<td>0.527482</td>
+<td>0.431229</td>
+<td>0.268616</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Summer</td>
+<td>0.560847</td>
+<td>0.500596</td>
+<td>0.386002</td>
+<td>0.269822</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Winter</td>
+<td>0.552514</td>
+<td>0.490316</td>
+<td>0.372439</td>
+<td>0.270203</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The analysis of R² values reveals several important insights about the performance of our models in predicting COPD across different seasons and predictor subsets. First, models that include all predictor variables consistently achieve the highest R² scores for every season. This indicates that combining environmental and sociobehavioral factors provides the most comprehensive understanding of the variability in COPD, as these variables likely capture a wide range of relevant influences.</p>
+<p>When dimensionality reduction is applied, the R² values decrease, suggesting some loss of information. However, even with dimensionality reduction, the models explain more than half of the variability in COPD outcomes. This implies that while reducing the number of predictors sacrifices some predictive power, the retained variables are still meaningful contributors to the model. Comparing the models that use only environmental or sociobehavioral variables, the R² values are higher for the environmental variable models across all seasons.</p>
+<p>Seasonal differences emerge as a key aspect of the analysis. The spring models achieve the highest R² values when all predictors are used and when only environmental variables are included, but they exhibit the lowest R² when using only sociobehavioral variables. This trend is followed by the summer and fall models, which also show relatively strong R² values under similar conditions. In contrast, the winter models have the highest R² values when using only sociobehavioral variables, indicating a distinct seasonal dynamic.</p>
+<p>Given that the primary difference between seasonal models lies in the local environmental vegetation indices, these results suggest that <strong>winter environmental factors may contribute less variability to COPD outcomes compared to sociobehavioral variables during this season</strong>. This could reflect reduced vegetation activity and lower pollen levels in winter, leading to less influence of environmental predictors. Conversely, the higher R² values for spring models with environmental predictors likely reflect the <strong>strong impact of vegetation indices and related environmental conditions, such as increased pollen levels and changing air quality, which are more pronounced during spring</strong> compared to winter</p>
+<div id="12b2479a-daac-47e2-a6b7-272c8bdf814e" class="cell" data-tags="[]" data-execution_count="103">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="VarCompare_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-the-rmse-across-16-models" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-the-rmse-across-16-models">Comparing the RMSE Across 16 Models</h3>
+<p><strong>Table Showing RMSE By Model and Season</strong></p>
+<div id="e582147e-9a68-43e8-848b-4316c12c9eef" class="cell" data-tags="[]" data-execution_count="66">
+<div class="cell-output cell-output-display" data-execution_count="66">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Model</th>
+<th data-quarto-table-cell-role="th">all</th>
+<th data-quarto-table-cell-role="th">bic</th>
+<th data-quarto-table-cell-role="th">env</th>
+<th data-quarto-table-cell-role="th">sol</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Season</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Fall</td>
+<td>20.206061</td>
+<td>21.468205</td>
+<td>23.912397</td>
+<td>26.083081</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Spring</td>
+<td>22.224898</td>
+<td>23.072179</td>
+<td>25.313270</td>
+<td>28.704642</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Summer</td>
+<td>15.974291</td>
+<td>17.034905</td>
+<td>18.888489</td>
+<td>20.598157</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Winter</td>
+<td>26.535056</td>
+<td>28.319169</td>
+<td>31.423747</td>
+<td>33.886842</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Examining the RMSE results, the summer models consistently exhibit the lowest RMSE across all model types, while the winter models show the highest RMSE. Including all variables results in significantly lower RMSE values, reflecting better predictive accuracy. Conversely, dimensionality reduction slightly increases RMSE, and the highest RMSE values are observed when using only sociobehavioral variables.</p>
+<p>These RMSE findings align with the R² results. Lower RMSE and higher R² values in the “all predictors” models indicate that the inclusion of both environmental and sociobehavioral variables leads to more accurate and explanatory models for predicting COPD. The slightly higher RMSE and lower R² values after dimensionality reduction suggest some loss of information, which reduces the model’s predictive power but still maintains reasonable performance.</p>
+<p>Seasonally, the lowest RMSE in summer models suggest that <strong>summer conditions may lead to more predictable COPD outcomes, potentially due to less variability in environmental factors like vegetation indices or air quality during this time.</strong> On the other hand, the higher RMSE in winter, coupled with relatively lower R² values for environmental models, points to a weaker relationship between winter environmental conditions and COPD. This reinforces the earlier observation that sociobehavioral variables play a more prominent role in winter, where environmental variability is less influential.</p>
+<div id="6764f7eb-9b87-446b-8703-d16dc1fbd527" class="cell" data-tags="[]" data-execution_count="101">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="VarCompare_files/figure-html/cell-29-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-predictors-with-highest-contribution" class="level3">
+<h3 class="anchored" data-anchor-id="compare-predictors-with-highest-contribution">Compare Predictors with Highest Contribution</h3>
+<p>In models that include all predictor variables, <strong>development density</strong> stands out as the most significant contributor, followed closely by <strong>physical activity</strong> and <strong>neighborhood tobacco retail density</strong>. <strong>Smoking behaviors</strong> also play a role but come after the previous factors. These results indicate that population and urban infrastructure characteristics—such as density—along with lifestyle factors like physical activity and smoking, are crucial in explaining the variability in the models. This aligns with the notion that urban environments and behavioral factors are closely tied to the outcomes being modeled, such as health-related outcomes.</p>
+<div id="dd551a81-0bd8-4469-8b6c-cf6930c99fa5" class="cell" data-tags="[]" data-execution_count="77">
+<div class="cell-output cell-output-display" data-execution_count="77">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sp_all</th>
+<th data-quarto-table-cell-role="th">su_all</th>
+<th data-quarto-table-cell-role="th">fa_all</th>
+<th data-quarto-table-cell-role="th">wi_all</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 1</td>
+<td>Hdensity_total</td>
+<td>Hdensity_total</td>
+<td>Hdensity_total</td>
+<td>Hdensity_total</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 2</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 3</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 4</td>
+<td>neighbor_avg_density</td>
+<td>neighbor_avg_density</td>
+<td>neighbor_avg_density</td>
+<td>neighbor_avg_density</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 5</td>
+<td>Smoking</td>
+<td>Smoking</td>
+<td>Smoking</td>
+<td>Smoking</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>When we perform dimensionality reduction, the results shift slightly, but core contributors remain consistent. <strong>Density and physical activity</strong> continue to be among the most significant predictors, underscoring their consistent importance across various model configurations. However, other predictors such as <strong>land surface temperature (LST)</strong> by season and <strong>smoking behavior</strong> start to show a more prominent role. This shift indicates that once we reduce the number of variables, the remaining predictors capture more specific, localized aspects like seasonal temperature changes and personal health behaviors (e.g., smoking), which become increasingly important.</p>
+<div id="c97a784e-9543-4a96-b804-c0c3faa72d18" class="cell" data-tags="[]" data-execution_count="78">
+<div class="cell-output cell-output-display" data-execution_count="78">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sp_bic</th>
+<th data-quarto-table-cell-role="th">su_bic</th>
+<th data-quarto-table-cell-role="th">fa_bic</th>
+<th data-quarto-table-cell-role="th">wi_bic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 1</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 2</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 3</td>
+<td>lst_spring</td>
+<td>lst_summer</td>
+<td>lst_fall</td>
+<td>forest_total</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 4</td>
+<td>forest_total</td>
+<td>Smoking</td>
+<td>Smoking</td>
+<td>Smoking</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 5</td>
+<td>Smoking</td>
+<td>minority</td>
+<td>forest_total</td>
+<td>minority</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>In models that only include social behavioral variables, it is not surprising to see that physical activity emerges as the top contributor.</p>
+<div id="b1486cee-2383-4a6d-a2ce-899d7f4352c8" class="cell" data-tags="[]" data-execution_count="79">
+<div class="cell-output cell-output-display" data-execution_count="79">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sp_sol</th>
+<th data-quarto-table-cell-role="th">su_sol</th>
+<th data-quarto-table-cell-role="th">fa_sol</th>
+<th data-quarto-table-cell-role="th">wi_sol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 1</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+<td>Physical_Activity</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 2</td>
+<td>neighbor_avg_density</td>
+<td>neighbor_avg_density</td>
+<td>neighbor_avg_density</td>
+<td>neighbor_avg_density</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 3</td>
+<td>disability</td>
+<td>disability</td>
+<td>disability</td>
+<td>disability</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 4</td>
+<td>aging</td>
+<td>aging</td>
+<td>aging</td>
+<td>aging</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 5</td>
+<td>Smoking</td>
+<td>Smoking</td>
+<td>Smoking</td>
+<td>Smoking</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Turning to environmental predictors, we observe that <strong>development density</strong>, <strong>surface temperature</strong>, and N<strong>DVI (Normalized Difference Vegetation Index)</strong> emerge as the most important. These factors are indicative of the environmental characteristics that influence health outcomes. However, seasonal differences emerge when we look specifically at the winter models. In winter, both vegetation indices and temperature seem to have less influence compared to the other seasons. This may be due to reduced vegetation activity and temperature fluctuations in winter, making these factors less relevant to the outcome in colder months.</p>
+<div id="ceacc834-de98-4bab-a864-f5453c575db3" class="cell" data-tags="[]" data-execution_count="80">
+<div class="cell-output cell-output-display" data-execution_count="80">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sp_env</th>
+<th data-quarto-table-cell-role="th">su_env</th>
+<th data-quarto-table-cell-role="th">fa_env</th>
+<th data-quarto-table-cell-role="th">wi_env</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 1</td>
+<td>Hdensity_total</td>
+<td>Hdensity_total</td>
+<td>Hdensity_total</td>
+<td>Hdensity_total</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 2</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+<td>Ldensity_total</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 3</td>
+<td>lst_spring</td>
+<td>ndvi_summer</td>
+<td>Hdensity_pct</td>
+<td>Hdensity_pct</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Feature 4</td>
+<td>Hdensity_pct</td>
+<td>lst_summer</td>
+<td>lst_fall</td>
+<td>lst_winter</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Feature 5</td>
+<td>ndvi_spring</td>
+<td>Hdensity_pct</td>
+<td>ndvi_fall</td>
+<td>ndvi_winter</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>By examining these results together, we see how different types of predictors—social behavioral versus environmental—interact with seasonal changes and dimensionality reduction. The consistency of physical activity and development density top predictors across models highlights their importance as a fundamental health-related factor, irrespective of seasonal variations or environmental conditions. Conversely, environmental factors such as temperature and vegetation indices appear to be more sensitive to seasonal changes, with winter showing a distinct reduction in their relevance.</p>
+<div id="7cfe0168-f72b-4352-a221-2448dd06f715" class="cell" data-tags="[]" data-execution_count="113">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="VarCompare_files/figure-html/cell-34-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="understanding-prediction-error" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-prediction-error">Understanding Prediction Error</h2>
+<p>In the previous sections, we highlighted the importance of including both environmental and social behavioral predictors in our model for a comprehensive understanding of COPD. We also explored how seasonal differences influence the model’s performance. However, it is crucial to validate the effectiveness of these predictors in accurately measuring COPD.</p>
+<p>In this section, we run random forest regression for each season, using the predictors after dimensionality reduction, to compare predicted and actual COPD rates at the census tract level. We will also create maps to visualize areas where the model under- or over-predicts, at both the census tract and county levels, as public health interventions are often implemented at the county level.</p>
+<section id="predicted-vs.-actual" class="level3">
+<h3 class="anchored" data-anchor-id="predicted-vs.-actual">Predicted VS. Actual</h3>
+<p>In this code, we are performing cross-validation (CV) to evaluate the performance of a random forest regression model, rather than using an explicit train-test split. Cross-validation is a technique that divides the dataset into multiple subsets (or “folds”) and iteratively trains the model on a portion of the data while testing it on the remaining data. This process is repeated for each fold, allowing the model to be validated on different portions of the data. As a result, cross-validation provides a more robust estimate of the model’s generalization performance because it reduces the risk of overfitting that might occur with a single train-test split.</p>
+<div id="58ed7a51-bcd7-42bc-aec0-37a56e8e0d19" class="cell" data-tags="[]" data-execution_count="124">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_and_evaluate_rf_with_cv_predictions(X, y, n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">42</span>, cv<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the model</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    rf_model <span class="op">=</span> RandomForestRegressor(n_estimators<span class="op">=</span>n_estimators, random_state<span class="op">=</span>random_state)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define custom scorers</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    scoring <span class="op">=</span> {</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mse'</span>: make_scorer(mean_squared_error, greater_is_better<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'r2'</span>: make_scorer(r2_score)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform cross-validation to calculate metrics</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    cv_results <span class="op">=</span> cross_validate(rf_model, X, y, scoring<span class="op">=</span>scoring, cv<span class="op">=</span>cv, return_train_score<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform cross-validation to get predictions</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> cross_val_predict(rf_model, X, y, cv<span class="op">=</span>cv)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_rmse'</span>: np.sqrt(<span class="op">-</span>np.mean(cv_results[<span class="st">'test_mse'</span>])),  <span class="co"># Convert negative MSE to positive RMSE</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_r2'</span>: np.mean(cv_results[<span class="st">'test_r2'</span>]),</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'predictions'</span>: predictions  <span class="co"># Cross-validated predictions for the entire dataset</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>When we examine the residuals versus predicted plot, we may observe that the R² value has dropped compared to when we used a simple train-test split for the regression model. This is a natural outcome of using cross-validation, as the model is evaluated on multiple subsets of the data, which provides a more reliable estimate of its performance. Cross-validation tends to give a more conservative estimate of model accuracy because the model is tested on more diverse data points, making the evaluation less optimistic than a single train-test split might suggest.</p>
+<p>Across the different seasons, we see that the variability in R² is relatively small, but there are still differences—specifically, the spring model tends to have the highest R², while the winter model has the lowest. This trend aligns with previous observations, reinforcing the notion that seasonal variations play a role in how well the model can predict COPD rates. The lower R² in winter suggests that the model may struggle more to capture patterns in the winter data, possibly due to seasonal factors like temperature or air quality that affect COPD differently across seasons.</p>
+<p>A key observation in the residual plot is the presence of a positive linear pattern. This pattern indicates that the model may be consistently underpredicting or overpredicting certain ranges of the data. In a well-fitted model, residuals should ideally be randomly distributed around zero, with no discernible pattern. The positive linear relationship suggests that as the predicted values increase, the residuals (or errors) also increase, meaning the model might not be capturing a certain aspect of the data adequately. This could point to a need for further feature engineering or model adjustments, such as incorporating additional variables or using a different algorithm, to better model the data and improve accuracy.</p>
+<div id="e8d38235-8996-415e-b2e8-d80a054ab47d" class="cell" data-tags="[]" data-execution_count="126">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>seasons_data <span class="op">=</span> {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Spring"</span>: (X_Spring_BIC, y_Spring),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Summer"</span>: (X_Summer_BIC, y_Summer),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Fall"</span>: (X_Fall_BIC, y_Fall),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Winter"</span>: (X_Winter_BIC, y_Winter)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>season_results <span class="op">=</span> {}</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> season, (X, y) <span class="kw">in</span> seasons_data.items():</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    cv_results <span class="op">=</span> train_and_evaluate_rf_with_cv_predictions(X, y)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    season_results[season] <span class="op">=</span> {</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'predictions'</span>: np.array(cv_results[<span class="st">'predictions'</span>]),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'actual'</span>: y.values.flatten(), </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_rmse'</span>: cv_results[<span class="st">'mean_rmse'</span>],</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_r2'</span>: cv_results[<span class="st">'mean_r2'</span>]</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="71543596-303e-42ab-822b-c8cfd8da0ae7" class="cell" data-tags="[]" data-execution_count="173">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="VarCompare_files/figure-html/cell-37-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="spatial-distribution-of-errors" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-distribution-of-errors">Spatial Distribution of Errors</h3>
+<p>We also mapped the residuals at the census tract level to better understand where our model is underpredicting and overpredicting. In this context, positive residuals indicate areas where the model is underpredicting COPD rates, and negative residuals suggest overprediction. Upon initial inspection, the pattern is not immediately clear across all seasons, suggesting that more information is needed to understand the underlying causes of these prediction errors within different regions of Pennsylvania.</p>
+<p>However, a closer examination reveals more nuanced insights, particularly in urban areas like Philadelphia. In northern Philadelphia, the model tends to underpredict COPD rates, while in the surrounding suburban areas, there is more overprediction. Interestingly, very rural areas also show underprediction, which could reflect the lack of sufficient data or features that explain COPD patterns in these regions. This pattern is important because it points to geographic and demographic factors that the model may not be fully capturing.</p>
+<p>Another finding is that if a census tract is underpredicting or overpredicting, nearby tracts tend to exhibit similar prediction errors. This suggests a spatial continuity in the model’s inaccuracies, possibly driven by regional characteristics that influence multiple neighboring tracts in the same way.</p>
+<div id="feab7206-94ad-4b9f-8293-d0d029411598" class="cell" data-tags="[]" data-execution_count="186">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="VarCompare_files/figure-html/cell-40-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When we average the residuals by county, the overall patterns shift significantly. Across all seasons, the model tends to underpredict COPD rates at the county level, with the exception of a few counties in northern Pennsylvania, where the model slightly overpredicts. This observation highlights how the geographic scale of analysis can influence our understanding of model performance and error distribution, thereby affecting policymaking and resource allocation strategies.</p>
+<p>At the county level, this consistent underprediction suggests that broader, regional factors might be driving COPD rates in ways that the model does not fully capture. However, when we examine the residuals more closely, it becomes evident that the errors are not particularly large, even in areas with underprediction. This implies that while the model’s performance may vary by geography, its overall accuracy remains relatively stable.</p>
+<div id="af5db8f1-383f-4923-bba6-323a6b4cc0c3" class="cell" data-tags="[]" data-execution_count="181">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="VarCompare_files/figure-html/cell-41-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../analysis/PrevalenceEst.html" class="pagination-link" aria-label="Seasonal Prevalence Estimation and Dimensionality Reduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Seasonal Prevalence Estimation and Dimensionality Reduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2024 Emily Zhou. All Rights Reserved.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/analysis/VarCompare.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
