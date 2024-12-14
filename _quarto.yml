@@ -9,6 +9,10 @@ website:
   page-footer:
     left: "© 2024 Emily Zhou. All Rights Reserved."
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+  back-to-top-navigation: true
+  page-navigation: true
+  repo-url: https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction
+  repo-actions: [source]
 
   sidebar:
     logo: "assets/copd.jpg"
@@ -17,13 +21,13 @@ website:
     tools:
       - icon: globe
         href: https://emilyzhou112.github.io/
-        text: "Personal Website"
+        text: "Visit my Website" 
       - icon: github
         href: https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction
-        text: "Project Repository"
+        text: "View on GitHub"
       - icon: envelope
         href: emzhou@design.upenn.edu
-        text: "Email"
+        text: "Contact Me"
     style: "docked"
     search: true
     collapse-level: 2
@@ -39,11 +43,13 @@ website:
           - analysis/PrepareML.ipynb
           - analysis/PrevalenceEst.ipynb
       - section: Results
+        contents:
+          - analysis/VarCompare.ipynb
 
 format:
   html:
     highlight-style: solarized
-    theme: cosmo
+    theme: [cosmo, pages.scss]
     css: styles.css
     code-copy: true
     code-overflow: wrap
