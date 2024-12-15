@@ -63,6 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../analysis/ModelCompare.html" rel="next">
 <link href="../analysis/PrevalenceEst.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -209,8 +210,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Predictors Comparison Across Seasons</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/ModelCompare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning Model Comparison</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../discussions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discussions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../citations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -267,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>ensemble</strong>, mainly <code>RandomForestRegressor</code>: The core model used for regression, which builds multiple decision trees and combines their predictions to enhance accuracy.</p></li>
 <li><p><strong>model_selection</strong>, mainly <code>cross_validate</code>: Allows cross-validation to assess the performance of the model across different subsets of the data, helping to ensure the model generalizes well.</p></li>
 </ul>
-<div id="c0c879f0-1fe4-4882-ace8-b315481d0ab8" class="cell" data-tags="[]" data-execution_count="114">
+<div id="c0c879f0-1fe4-4882-ace8-b315481d0ab8" class="cell" data-tags="[]" data-execution_count="187">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -275,17 +294,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVR</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> make_scorer, mean_squared_error, r2_score, mean_absolute_error</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_validate, cross_val_predict</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVR</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> make_scorer, mean_squared_error, r2_score, mean_absolute_error</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_validate, cross_val_predict</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="the-random-forest-model" class="level2">
@@ -838,39 +858,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="predicted-vs.-actual" class="level3">
 <h3 class="anchored" data-anchor-id="predicted-vs.-actual">Predicted VS. Actual</h3>
 <p>In this code, we are performing cross-validation (CV) to evaluate the performance of a random forest regression model, rather than using an explicit train-test split. Cross-validation is a technique that divides the dataset into multiple subsets (or “folds”) and iteratively trains the model on a portion of the data while testing it on the remaining data. This process is repeated for each fold, allowing the model to be validated on different portions of the data. As a result, cross-validation provides a more robust estimate of the model’s generalization performance because it reduces the risk of overfitting that might occur with a single train-test split.</p>
-<div id="58ed7a51-bcd7-42bc-aec0-37a56e8e0d19" class="cell" data-tags="[]" data-execution_count="124">
+<div id="58ed7a51-bcd7-42bc-aec0-37a56e8e0d19" class="cell" data-tags="[]" data-execution_count="194">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_and_evaluate_rf_with_cv_predictions(X, y, n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">42</span>, cv<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the model</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    rf_model <span class="op">=</span> RandomForestRegressor(n_estimators<span class="op">=</span>n_estimators, random_state<span class="op">=</span>random_state)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define custom scorers</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    scoring <span class="op">=</span> {</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mse'</span>: make_scorer(mean_squared_error, greater_is_better<span class="op">=</span><span class="va">False</span>),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'r2'</span>: make_scorer(r2_score)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform cross-validation to calculate metrics</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    cv_results <span class="op">=</span> cross_validate(rf_model, X, y, scoring<span class="op">=</span>scoring, cv<span class="op">=</span>cv, return_train_score<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform cross-validation to get predictions</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> cross_val_predict(rf_model, X, y, cv<span class="op">=</span>cv)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_rmse'</span>: np.sqrt(<span class="op">-</span>np.mean(cv_results[<span class="st">'test_mse'</span>])),  <span class="co"># Convert negative MSE to positive RMSE</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_r2'</span>: np.mean(cv_results[<span class="st">'test_r2'</span>]),</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'predictions'</span>: predictions  <span class="co"># Cross-validated predictions for the entire dataset</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    pipeline <span class="op">=</span> Pipeline([</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'scaler'</span>, StandardScaler()),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'rf'</span>, RandomForestRegressor(n_estimators<span class="op">=</span>n_estimators, random_state<span class="op">=</span>random_state))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define custom scorers</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    scoring <span class="op">=</span> {</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mse'</span>: make_scorer(mean_squared_error, greater_is_better<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'r2'</span>: make_scorer(r2_score)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform cross-validation to calculate metrics</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    cv_results <span class="op">=</span> cross_validate(pipeline, X, y, scoring<span class="op">=</span>scoring, cv<span class="op">=</span>cv, return_train_score<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform cross-validation to get predictions</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> cross_val_predict(pipeline, X, y, cv<span class="op">=</span>cv)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_rmse'</span>: np.sqrt(<span class="op">-</span>np.mean(cv_results[<span class="st">'test_mse'</span>])),  <span class="co"># Convert negative MSE to positive RMSE</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mean_r2'</span>: np.mean(cv_results[<span class="st">'test_r2'</span>]),</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">'predictions'</span>: predictions  <span class="co"># Cross-validated predictions for the entire dataset</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>When we examine the residuals versus predicted plot, we may observe that the R² value has dropped compared to when we used a simple train-test split for the regression model. This is a natural outcome of using cross-validation, as the model is evaluated on multiple subsets of the data, which provides a more reliable estimate of its performance. Cross-validation tends to give a more conservative estimate of model accuracy because the model is tested on more diverse data points, making the evaluation less optimistic than a single train-test split might suggest.</p>
 <p>Across the different seasons, we see that the variability in R² is relatively small, but there are still differences—specifically, the spring model tends to have the highest R², while the winter model has the lowest. This trend aligns with previous observations, reinforcing the notion that seasonal variations play a role in how well the model can predict COPD rates. The lower R² in winter suggests that the model may struggle more to capture patterns in the winter data, possibly due to seasonal factors like temperature or air quality that affect COPD differently across seasons.</p>
 <p>A key observation in the residual plot is the presence of a positive linear pattern. This pattern indicates that the model may be consistently underpredicting or overpredicting certain ranges of the data. In a well-fitted model, residuals should ideally be randomly distributed around zero, with no discernible pattern. The positive linear relationship suggests that as the predicted values increase, the residuals (or errors) also increase, meaning the model might not be capturing a certain aspect of the data adequately. This could point to a need for further feature engineering or model adjustments, such as incorporating additional variables or using a different algorithm, to better model the data and improve accuracy.</p>
-<div id="e8d38235-8996-415e-b2e8-d80a054ab47d" class="cell" data-tags="[]" data-execution_count="126">
+<div id="e8d38235-8996-415e-b2e8-d80a054ab47d" class="cell" data-tags="[]" data-execution_count="195">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>seasons_data <span class="op">=</span> {</span>
@@ -892,7 +914,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="71543596-303e-42ab-822b-c8cfd8da0ae7" class="cell" data-tags="[]" data-execution_count="173">
+<div id="71543596-303e-42ab-822b-c8cfd8da0ae7" class="cell" data-tags="[]" data-execution_count="197">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -907,7 +929,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We also mapped the residuals at the census tract level to better understand where our model is underpredicting and overpredicting. In this context, positive residuals indicate areas where the model is underpredicting COPD rates, and negative residuals suggest overprediction. Upon initial inspection, the pattern is not immediately clear across all seasons, suggesting that more information is needed to understand the underlying causes of these prediction errors within different regions of Pennsylvania.</p>
 <p>However, a closer examination reveals more nuanced insights, particularly in urban areas like Philadelphia. In northern Philadelphia, the model tends to underpredict COPD rates, while in the surrounding suburban areas, there is more overprediction. Interestingly, very rural areas also show underprediction, which could reflect the lack of sufficient data or features that explain COPD patterns in these regions. This pattern is important because it points to geographic and demographic factors that the model may not be fully capturing.</p>
 <p>Another finding is that if a census tract is underpredicting or overpredicting, nearby tracts tend to exhibit similar prediction errors. This suggests a spatial continuity in the model’s inaccuracies, possibly driven by regional characteristics that influence multiple neighboring tracts in the same way.</p>
-<div id="feab7206-94ad-4b9f-8293-d0d029411598" class="cell" data-tags="[]" data-execution_count="186">
+<div id="feab7206-94ad-4b9f-8293-d0d029411598" class="cell" data-tags="[]" data-execution_count="201">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1357,6 +1379,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../analysis/ModelCompare.html" class="pagination-link" aria-label="Machine Learning Model Comparison">
+        <span class="nav-page-text">Machine Learning Model Comparison</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

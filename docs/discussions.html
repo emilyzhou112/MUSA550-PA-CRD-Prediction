@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spatial Estimation of Seasonal Variability in Chronic Obtrusive Pulmonary Disease Prevalence Based on Geospatial Machine Learning Procedures – MUSA 550</title>
+<title>discussions – MUSA 550</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./introduction.html" rel="next">
+<link href="./citations.html" rel="next">
+<link href="./analysis/ModelCompare.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -80,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discussions.html">Discussions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -112,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -182,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discussions.html" class="sidebar-item-text sidebar-link">
+  <a href="./discussions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Discussions</span></a>
   </div>
 </li>
@@ -202,46 +203,42 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#discussions" id="toc-discussions" class="nav-link active" data-scroll-target="#discussions">Discussions</a>
+  <ul class="collapse">
+  <li><a href="#findings-summary" id="toc-findings-summary" class="nav-link" data-scroll-target="#findings-summary">Findings Summary</a></li>
+  <li><a href="#limitations-and-uncertainties" id="toc-limitations-and-uncertainties" class="nav-link" data-scroll-target="#limitations-and-uncertainties">Limitations and Uncertainties</a></li>
+  <li><a href="#next-step" id="toc-next-step" class="nav-link" data-scroll-target="#next-step">Next Step</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/discussions.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Spatial Estimation of Seasonal Variability in Chronic Obtrusive Pulmonary Disease Prevalence Based on Geospatial Machine Learning Procedures</h1>
-<p class="subtitle lead">An Approach Using Earth-Engined-Based Remote Sensing Data, Health Risks Behavior, and Socio-Demographic Variables Across Census Tracts in Pennsylvania</p>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Estimating disease prevalence at a sub-city neighborhood scale enables early, targeted interventions that can save lives and reduce public health burdens. However, accurately identifying neighborhood-level disease prevalence is challenging due to the cost-prohibitive nature of localized data collection, difficulties in accessing confidential medical records, and the complexity of interactions between multiple potential determinants.</p>
-<p>To address these challenges and capture a multidimensional perspective on the determinants of chronic respiratory diseases, this study investigates the environmental, socio-demographic, and behavioral predictors of chronic obstructive pulmonary disease (COPD) at the census tract level in Pennsylvania using machine learning models. By localizing the analysis to this geographic granularity, we aim to gain a nuanced understanding of spatial disparities in respiratory health. Drawing on data from tobacco retailer density, census records, health risk behavior surveys, seasonally classified land cover datasets, and satellite-derived vegetation indices, the study identifies the most significant predictors of COPD prevalence. It also evaluates the performance of various analytical techniques, including multilayer perceptron, support vector regression, and random forest regression.</p>
-<p>Github Repository: <a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction">MUSA550-PA-CRD-Prediction</a></p>
-<p><img src="assets/PA-COPD.png" class="img-fluid"></p>
-<p><strong>Contributor:</strong></p>
-<p>Emily Zhou</p>
-<p><em>Department of City and Regional Planning, Stuart Weitzman School of Design, University of Pennsylvania</em></p>
-<p><strong>Key Words:</strong></p>
-<p>chronic respiratory disease, support vector machine, random forest, multiple layer perceptron, deep learning, bayesian information criteria, google earth engine, land cover, geospatial health</p>
+<section id="discussions" class="level1">
+<h1>Discussions</h1>
+<section id="findings-summary" class="level2">
+<h2 class="anchored" data-anchor-id="findings-summary">Findings Summary</h2>
+<p>In short summary, this study offers a multifaceted exploration of how various predictors—both social-behavioral and environmental—interact with seasonal changes and dimensionality reduction techniques to influence the prediction of COPD rates. One of the most consistent findings across all models is the prominence of <strong>physical activity</strong> and <strong>development density</strong> as top predictors of COPD rates. These predictors retain their significance regardless of seasonal variations, underscoring their role as fundamental health-related factors. In contrast, environmental predictors such as temperature and vegetation indices demonstrate greater sensitivity to seasonal fluctuations. Notably, their relevance diminishes during winter, reflecting a seasonal reduction in their predictive power. This observation aligns with broader climatic patterns, where winter conditions—such as reduced vegetation and lower temperatures—may interact differently with COPD-related health outcomes.</p>
+<p>The evaluation of model performance highlights seasonal differences, with <strong>spring models achieving the highest R² values</strong>, while <strong>winter models show the lowest R²</strong>. This trend suggests that spring conditions offer more predictable patterns for COPD rates, possibly due to more stable environmental. Conversely, the reduced performance in winter indicates challenges in capturing complex seasonal dynamics, such as cold temperatures or poorer air quality, which may disproportionately impact COPD outcomes. The use of cross-validation led to slightly lower R² values compared to a simple train-test split. This is expected, as cross-validation evaluates model performance across multiple subsets of the data, providing a more reliable but conservative estimate of accuracy.</p>
+<p>A closer look at the residual versus predicted plots reveals a notable positive linear pattern in the residuals suggests systematic underprediction or overprediction in certain data ranges. Ideally, residuals should be randomly distributed around zero, but the observed trend indicates that the model may not be fully capturing certain aspects of the data. This points to the need for additional feature engineering, such as incorporating new variables or exploring alternative algorithms, to enhance predictive accuracy. Through mapping the residuals, we noticed that in urban areas like northern Philadelphia, the model tends to underpredict COPD rates. This may reflect complex urban health dynamics that are not fully captured by the current set of predictors. Conversely, in surrounding suburban areas, the model shows a tendency to overpredict. In rural areas, underprediction is also common, possibly due to limited data or missing explanatory variables that influence COPD outcomes in these regions. Residuals exhibit spatial continuity, with similar prediction errors clustering in neighboring census tracts. This indicates the influence of regional factors that may affect multiple tracts similarly, highlighting the importance of spatial dependencies in COPD prediction.</p>
+</section>
+<section id="limitations-and-uncertainties" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-and-uncertainties">Limitations and Uncertainties</h2>
+<p>This study provides valuable insights into the predictors and seasonal patterns of COPD, but several limitations and uncertainties must be acknowledged to contextualize the findings and guide future research. One key concern is the accuracy of the CDC’s COPD estimates, which serve as a foundational dataset for the analysis. If the estimation methodology contains biases or inaccuracies, these could propagate through the model and influence the results. Additionally, there is some uncertainty regarding whether we are utilizing these estimates appropriately for our specific modeling purposes. A closer examination of the CDC’s methods and assumptions is necessary to ensure compatibility with our approach.</p>
+<p>Another limitation lies in our method of estimating seasonal COPD occurrences, which relies on exacerbation rates as a proxy. While exacerbations are closely tied to COPD severity, it is unclear whether they can reliably represent seasonal variations in overall COPD prevalence. This raises questions about the validity of our approach and highlights the need for further validation using independent seasonal COPD data. Furthermore, the selection of predictors in the model warrants further consideration. Although we included social, behavioral, and environmental factors, the omission of specific predictors, such as pollution indicators like PM2.5 or NO₂ concentrations, may have reduced the model’s ability to fully capture the complexity of COPD outcomes. Incorporating such variables in future analyses could enhance the explanatory power and robustness of the model.</p>
+<p>A related issue is our choice of outcome variable. While we primarily focused on predicting COPD counts, this approach introduced high variability, which likely reduced the model’s accuracy. Preliminary analyses not included in this study demonstrated that predicting COPD rates, normalized by population, resulted in much higher accuracy due to the lower variability in rates. This raises the question of whether future analyses should prioritize rate predictions over raw counts. Although predicting rates can improve accuracy, it might shift the focus to relative comparisons and obscure the absolute disease burden in high-prevalence areas.</p>
+</section>
+<section id="next-step" class="level2">
+<h2 class="anchored" data-anchor-id="next-step">Next Step</h2>
+<p>Moving forward, it is important to acknowledge that this work is still in progress and represents our first trial in developing models to better understand COPD predictors and patterns. While we aimed to build robust models, the current approach has not fully explained the spatial distribution of COPD, highlighting a critical area for improvement. Future iterations will require significant effort in feature engineering to enhance the model’s explanatory power. This includes carefully selecting the most relevant indicators of local environment, demographic characteristics, and socio-behavioral factors. For instance, identifying more specific and impactful predictors, such as localized air pollution levels, housing quality, or access to healthcare, could help capture finer details of COPD prevalence.</p>
+<p>Additionally, more exploratory analyses are needed to delve into the nuances of the data, particularly to account for urban and rural differences that likely influence COPD patterns in distinct ways. By zooming into specific geographic areas or demographic subgroups, we can gain deeper insights into how these factors interact. Such efforts will allow us to refine our models and create tools that better represent the spatial and seasonal variability of COPD. With these enhancements, future work will aim to provide a more comprehensive and actionable understanding of COPD determinants, supporting public health strategies and interventions tailored to local needs.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -664,10 +661,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./analysis/ModelCompare.html" class="pagination-link" aria-label="Machine Learning Model Comparison">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Machine Learning Model Comparison</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./introduction.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text">Introduction</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./citations.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -679,7 +679,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction/blob/main/discussions.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

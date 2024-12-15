@@ -12,9 +12,6 @@ To address these challenges and capture a multidimensional perspective on the de
 By localizing the analysis to this geographic granularity, we aim to gain a nuanced understanding of spatial disparities in respiratory health.
 Drawing on data from tobacco retailer density, census records, health risk behavior surveys, seasonally classified land cover datasets, and satellite-derived vegetation indices, the study identifies the most significant predictors of COPD prevalence. It also evaluates the performance of various analytical techniques, including multilayer perceptron, support vector regression, and random forest regression.
 
-Preliminary results suggest that local environmental factors have a slightly stronger influence on COPD prevalence during the spring and fall, with development density and tobacco retailer coverage emerging as prominent predictors. The random forest model demonstrated strong predictive performance. Initial findings reveal that COPD prevalence is higher in several urban and very rural tracts while lower in suburban areas.
-Ultimately, this project aims to enhance the prediction of chronic respiratory diseases and provide valuable insights into the interplay of environmental and socioeconomic factors in shaping respiratory health outcomes across Pennsylvania.
-
 Github Repository: [MUSA550-PA-CRD-Prediction](https://github.com/emilyzhou112/MUSA550-PA-CRD-Prediction)
 
 ![](assets/PA-COPD.png)

@@ -45,6 +45,11 @@ website:
       - section: Results
         contents:
           - analysis/VarCompare.ipynb
+          - analysis/ModelCompare.ipynb
+      - href: discussions.qmd
+        text: Discussions
+      - href: citations.qmd
+        text: References
 
 format:
   html:
